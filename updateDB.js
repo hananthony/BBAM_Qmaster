@@ -1,15 +1,19 @@
 // sequelize 생성
 const Sequelize = require("sequelize");
+const Brython = require("brthon");
 
 // DB 정보, commit 시에는 임시로 지움
-const sequelize = new Sequelize("database", "username", "password", {
-    host: "host",
-    dialect: "mysql"|"spqlite"|"postgres"|"mssql",
-    define: {
-        //freezeTableName: true,
-        //timestamps: false
-    }
-});
+// const sequelize = new Sequelize("database", "username", "password", {
+//     host: "host",
+//     dialect: "mysql"|"spqlite"|"postgres"|"mssql",
+//     define: {
+//         //freezeTableName: true,
+//         //timestamps: false
+//     }
+// });
+
+
+const brython = new Brython();
 
 // DB 연동
 sequelize.authenticate().then(() => {
@@ -83,6 +87,14 @@ function testUpdate() {
         }
     }).then(testCode => {
         console.log(testCode[0].dataValues.PRB_CD);
+
+        let cc = brython.run(testCode[0].dataValues.PRB_CD);
+        console.log(cc);
+        // let code = testCode[0].dataValues.PRB_CD;
+        // let cc = __BRYTHON__.py2js(code, '__main__', '__main__').to_js();
+        // brython();
+        // console.log(cc);
+        // eval(cc);
     }).catch(err => {
         console.log(err);
     });

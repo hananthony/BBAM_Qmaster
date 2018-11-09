@@ -1,5 +1,5 @@
 let MAX_LEVEL = 10;
-let qTypes = ['입출력', '연산자', '조건문', '반복문'];
+let qTypes = ['입출력', '산술연산', '조건문', '반복문'];
 
 function getRndNUM(max, min = 0) {
 	return Math.floor(Math.random() * (max - min)) + min;
